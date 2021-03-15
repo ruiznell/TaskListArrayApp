@@ -3,7 +3,7 @@
  * NOTA: Il test deve essere lanciato dalla cartella lib
  */
 declare(strict_types=1);
-require "../../../vendor/testTools/testTool.php";
+require "../../vendor/testTools/testTool.php";
 require "./JSONReader.php";
 
 system("clear");

@@ -1,5 +1,5 @@
 <?php
-require "./vendor/testTools/testTool.php";
+require "../../../vendor/testTools/testTool.php";
 require "./case_study/tasklistArray/lib/searchFunctions.php";
 
 $testCases = [

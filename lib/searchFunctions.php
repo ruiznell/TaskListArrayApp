@@ -4,7 +4,8 @@
  * Programmazione Funzionale - dichiarativo 
  */
 function searchText($searchText) {
-    
+    $result = strpos($taskItem['taskName'], $searchText) !==false;
+        return $result;
    
 }
 
@@ -14,7 +15,12 @@ function searchText($searchText) {
  * @return callable La funzione che verrà utilizzata da array_filter
  */
 function searchStatus(string $status) : callable {
-    
+    return function ($taskItem) use ($status) {
+        
+        $result = strpos($taskItem['status'], $status) !==false;
+        return $result;
+
+    };
 } 
 
 

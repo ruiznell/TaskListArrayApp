@@ -1,30 +1,30 @@
 <?php
-require "./vendor/testTools/testTool.php";
-require "./case_study/tasklistArray/lib/searchFunctions.php";
+require "../../../vendor/testTools/testTool.php";
+require "./dataset/lib/searchFunctions.php";
 
 $testCases = [
     [
-        'status' => 'progress',
+        'search' => 'progress',
         'expectedCount' => 2,
         'description' => 'ricerca di status in progress'
     ],
     [
-        'status' => 'todo',
+        'search' => 'todo',
         'expectedCount' => 4,
         'description' => 'ricerca di status in todo'
     ],
     [
-        'status' => 'done',
+        'search' => 'done',
         'expectedCount' => 3,
         'description' => 'ricerca di status in done'
     ],
     [
-        'status' => 'all',
+        'search' => 'all',
         'expectedCount' => 9,
         'description' => 'ricerca all status'
     ],
     [
-        'status' => '',
+        'search' => '',
         'expectedCount' => 9,
         'description' => 'ricerca status "" (empty string)'
     ],
@@ -45,7 +45,7 @@ $mockTaskList = array(
 
 foreach ($testCases as $testCase) {
     extract($testCase);
-    $actual = array_filter($mockTaskList, searchStatus($status));
+    $actual = array_filter($mockTaskList, searchStatus($search));
     
     assertEquals('array', gettype($actual),'il risultato è un ');
     assertEquals($expectedCount, count($actual), $description);
