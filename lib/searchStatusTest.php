@@ -1,6 +1,6 @@
 <?php
-require "../../../vendor/testTools/testTool.php";
-require "./dataset/lib/searchFunctions.php";
+require "./vendor/testTools/testTool.php";
+require "./lib/searchFunctions.php";
 
 $testCases = [
     [
