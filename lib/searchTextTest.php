@@ -59,12 +59,12 @@ $mockTaskList = array(
 
 
 foreach ($testCases as $testCase) {
-    echo "<br>";
+    
     extract($testCase);
     $actual = array_filter($mockTaskList, searchText($searchText));
     
     assertEquals('array', gettype($actual),'il risultato è un ');
-    echo "<br>";
+    
     assertEquals($expectedCount, count($actual), $description);
-    echo "<br>";
+    
 }

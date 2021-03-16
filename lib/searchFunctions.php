@@ -1,13 +1,35 @@
 <?php
+
 /**
- * Funzione di ordine superiore funzione che restituisce una funzione
- * Programmazione Funzionale - dichiarativo 
+ * Funzione di ordine superiore che restituisce una funzione
+ * Programmazione Funzionale - dichiarativo
  */
-function searchText($searchText) {
-    return function ($taskItem) use ($searchText) {
-    $result = strpos($taskItem['taskName'], $searchText) !==false;
+
+function searchSpaceText($searchText) {
+
+    return function ($taskItem) use ($searchText){ 
+        $space=trim(filter_var($searchText), FILTER_SANITIZE_STRING);
+        if($space != ""){
+            $result = strripos($taskItem['taskName'], $space) !== false;
+            return $result;
+
+        }else{
+            return count($taskItem);
+        }
+
+    };
+   
+}
+
+function searchText($searchText){
+    // la variabile $searchText è una variabile locale per la funzione esterna
+    // per fare in modo che $searchText sia visibile (ambito) all'interno della funzione anonima devo usare "use"
+    return function ($taskItem) use ($searchText){ 
+
+        $result = strpos($taskItem['taskName'], $searchText) !== false;
         return $result;
-    };  
+    };
+
 }
 
 /**
@@ -15,9 +37,14 @@ function searchText($searchText) {
  * (progress|done|todo)
  * @return callable La funzione che verrà utilizzata da array_filter
  */
-function searchStatus(string $status) : callable {
+// function searchStatus(string $status) : callable {
+    
+// } 
 
-    return function ($taskItem) use ($status) {
+
+function searchStatus(string $status){
+
+    return function ($taskItem) use ($status){ 
         if ($status==""){
             $result = count($taskItem);
         }else{
@@ -32,10 +59,13 @@ function searchStatus(string $status) : callable {
 }
 
 
+
+
+
 function coloreStatus(string $status)
     {
         
-        if ($status === "todo")
+     if ($status === "todo")
         {
             return "danger";
         }
@@ -45,13 +75,8 @@ function coloreStatus(string $status)
             return "primary";
         } 
     
-        else
+     else
         {
             return "secondary";
         }
     }
-    
-
-
-
-
