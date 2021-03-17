@@ -5,21 +5,7 @@
  * Programmazione Funzionale - dichiarativo
  */
 
-function searchSpaceText($searchText) {
 
-    return function ($taskItem) use ($searchText){ 
-        $space=trim(filter_var($searchText), FILTER_SANITIZE_STRING);
-        if($space != ""){
-            $result = strripos($taskItem['taskName'], $space) !== false;
-            return $result;
-
-        }else{
-            return count($taskItem);
-        }
-
-    };
-   
-}
 
 function searchText($searchText){
     // la variabile $searchText è una variabile locale per la funzione esterna
