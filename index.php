@@ -6,9 +6,7 @@ require "./lib/searchFunctions.php";
 $taskList = JSONReader('./dataset/TaskList.json');
 
 if(isset($_GET['searchText']) && trim($_GET['searchText'])!==''){
-
     $searchText=trim(filter_var($_GET['searchText'], FILTER_SANITIZE_STRING));
-
     $taskList = array_filter($taskList, searchText($searchText));
     
     if(isset($_GET['status']) && ($_GET['status'])!=='all'){
@@ -17,17 +15,13 @@ if(isset($_GET['searchText']) && trim($_GET['searchText'])!==''){
         $taskList= array_filter($taskList, searchStatus($status));
         
     }else{
-        
         $status='all';
     }
 }else{
-
     $searchText='';
 
     if(isset($_GET['status']) && ($_GET['status'])!=='all'){
-        $status=($_GET['status']);
-    
-        
+        $status=($_GET['status']);      
         $taskList= array_filter($taskList, searchStatus($status));
         
     }else{

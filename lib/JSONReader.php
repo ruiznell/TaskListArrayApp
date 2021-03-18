@@ -5,7 +5,7 @@
  * @var    string $filepath percorso del file da leggere
  * @return array $res array associativo corrispondente
  */
-function JSONReader(string $filepath)
+function JSONReader($filepath)
 {
     if(file_exists($filepath))
     {

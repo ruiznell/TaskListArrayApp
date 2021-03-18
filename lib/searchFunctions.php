@@ -5,18 +5,26 @@
  * Programmazione Funzionale - dichiarativo
  */
 
-
-
 function searchText($searchText){
-    // la variabile $searchText è una variabile locale per la funzione esterna
-    // per fare in modo che $searchText sia visibile (ambito) all'interno della funzione anonima devo usare "use"
-    return function ($taskItem) use ($searchText){ 
+    
+    return function ($taskItem) use ($searchText){
 
-        $result = strpos($taskItem['taskName'], $searchText) !== false;
-        return $result;
+    $noSpaces = preg_replace('/[ ]+/m', ' ', $searchText);
+    $searchSpaces = trim($noSpaces);
+    
+    if ($searchSpaces !== '')
+    {    
+        $result = stripos($taskItem['taskName'], $searchSpaces) !== false;
+        
+    } else {
+        $result = true;
+    }
+        return $result;    
+           
     };
 
 }
+
 
 /**
  * @var string $status è la stringa che corrisponde allo status da cercare
@@ -31,10 +39,10 @@ function searchText($searchText){
 function searchStatus(string $status){
 
     return function ($taskItem) use ($status){ 
-        if ($status==""){
+        if ($status===""){
             $result = count($taskItem);
         }else{
-            if ($status!='all') {
+            if ($status!=='all') {
                 $result = strpos($taskItem['status'], $status) !==false;
             }else{
                 $result = count($taskItem);
@@ -43,10 +51,6 @@ function searchStatus(string $status){
         return $result;
     };
 }
-
-
-
-
 
 function coloreStatus(string $status)
     {
