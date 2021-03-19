@@ -52,7 +52,7 @@ function searchStatus($status){
     };
 }
 
-function coloreStatus(string $status)
+function coloreStatus($status)
     {
         
      if ($status === "todo")
