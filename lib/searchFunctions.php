@@ -36,7 +36,7 @@ function searchText($searchText){
 // } 
 
 
-function searchStatus(string $status){
+function searchStatus($status){
 
     return function ($taskItem) use ($status){ 
         if ($status===""){
